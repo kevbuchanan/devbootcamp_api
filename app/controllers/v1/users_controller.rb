@@ -15,14 +15,5 @@ module V1
         redirect_to(status: 404)
       end
     end
-
-    def update
-    end
-
-    def destroy
-    end
-
-    def create
-    end
   end
 end
