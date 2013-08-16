@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :feedback_given, :class_name => 'Feedback', :foreign_key => 'giver_id'
   has_many :feedback_receivable, :class_name => 'Feedback', :foreign_key => 'receiver_id'
   has_many :feedback_ratings
-
+  has_one  :api_key
   #acts_as_commentable
   has_many :comments, :as => :commentable
 
@@ -38,12 +38,6 @@ class User < ActiveRecord::Base
 
   belongs_to :cohort
 
-  validates_presence_of :name
-  EMAIL_REGEX = '\A[A-Z0-9_\.%\+\-\']+@' +
-                '(?:[A-Z0-9\-]+\.)+' +
-                '(?:[A-Z]{2,4}|museum|travel)\z'
-  validates :email, :uniqueness => true, :presence => true, :format => /#{EMAIL_REGEX}/i
-  validates :password, :presence => true, :on => :create
 
   scope :by_name, order("name ASC")
   scope :staff, where(:roles_mask => [2,4])
