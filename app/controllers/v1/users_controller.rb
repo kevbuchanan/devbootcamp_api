@@ -1,4 +1,4 @@
-class V1::UsersController < BaseController
+class V1::UsersController < V1::BaseController
   before_filter :restrict_access
 
   respond_to :json
