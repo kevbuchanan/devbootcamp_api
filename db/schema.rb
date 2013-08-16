@@ -31,9 +31,8 @@ ActiveRecord::Schema.define(:version => 20130816005414) do
   add_index "actors_users", ["actor_id", "user_id"], :name => "index_actors_users_on_actor_id_and_user_id"
 
   create_table "api_keys", :force => true do |t|
-    t.string   "access_token"
+    t.string   "key"
     t.string   "user_id"
-    t.string   "name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
