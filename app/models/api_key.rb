@@ -1,6 +1,7 @@
 class ApiKey < ActiveRecord::Base
   after_initialize :generate_access_token
   belongs_to :user
+
   validates_uniqueness_of :key
   validates_presence_of   :key, :user_id
 
