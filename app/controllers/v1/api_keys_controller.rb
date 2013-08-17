@@ -1,4 +1,5 @@
 class V1::ApiKeysController < V1::BaseController
+  before_filter :restrict_access
   respond_to :json
 
   def show
@@ -7,6 +8,14 @@ class V1::ApiKeysController < V1::BaseController
       respond_with @key
     else
       redirect_to(status: 404)
+    end
+  end
+
+  private
+
+  def restrict_access
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "dbc-secret" && password == "test"
     end
   end
 end
