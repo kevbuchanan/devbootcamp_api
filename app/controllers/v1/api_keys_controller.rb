@@ -7,15 +7,13 @@ class V1::ApiKeysController < V1::BaseController
     if @key
       respond_with @key
     else
-      redirect_to(status: 404)
+      redirect_with(status: 404)
     end
   end
 
   private
 
   def restrict_access
-    authenticate_or_request_with_http_basic do |username, password|
-      username == "dbc-secret" && password == "test"
-    end
+    redirect_with(status: 404) unless request.headers['Authorization'] == 'DBC-API test'
   end
 end
