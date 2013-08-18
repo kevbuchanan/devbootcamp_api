@@ -6,6 +6,8 @@ describe V1::UsersController, :helper_namespace => :api_v1 do
     #request.env['HTTP_AUTHORIZATION'] = 'Token token="foo"'
     #ApiKey.stub(:exists?).and_return(true)
     skip_http_authentication
+    create :user
+    get :index
   end
 
   describe '#index' do
@@ -13,8 +15,6 @@ describe V1::UsersController, :helper_namespace => :api_v1 do
 
 
     it 'should return a list of users' do
-      create :user
-      get :index
       body = JSON.parse(response.body)
       name = body['users'][0]['name']
       expect(body['users']).to be_a(Array)

@@ -1,7 +1,7 @@
 class V1::UserSerializer < V1::BaseSerializer
-  attributes :name, :email, :bio, :profile # columns 
-  #attributes :comments # associations
-  attributes :cohort#, :exercises, :challenges # methods here that give more info
+  #TO DO: Add back attributes as we get access to them.
+  attributes :name, :email, :bio, :profile
+  attributes :cohort
 
   def cohort
     {name: object.cohort.name, location: object.cohort.location, email: object.cohort.email, start_date: object.cohort.start_date}
