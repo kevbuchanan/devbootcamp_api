@@ -33,3 +33,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+def skip_http_authentication
+  V1::UsersController.any_instance.stub(:authenticate_or_request_with_http_token).and_return(true)
+end

@@ -10,9 +10,10 @@ class User < ActiveRecord::Base
   has_many :feedback_receivable, :class_name => 'Feedback', :foreign_key => 'receiver_id'
   has_many :feedback_ratings
   has_one  :api_key
+  delegate :key, :to => :api_key
+
   #acts_as_commentable
   has_many :comments, :as => :commentable
-
 
   has_many :exercise_attempts, :through => :actors
 
@@ -37,7 +38,6 @@ class User < ActiveRecord::Base
   has_one  :note, :class_name => 'User::Note'
 
   belongs_to :cohort
-
 
   scope :by_name, order("name ASC")
   scope :staff, where(:roles_mask => [2,4])
@@ -256,5 +256,4 @@ class User < ActiveRecord::Base
       self.email = self.email.downcase.strip
     end
   end
-
 end

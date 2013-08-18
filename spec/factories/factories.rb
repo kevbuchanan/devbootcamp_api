@@ -18,4 +18,9 @@ FactoryGirl.define do
     start_date Date.today
     location "San Francisco"
   end
+
+  factory :api_key do
+    user_id 1
+    key "test_access1"
+  end
 end
