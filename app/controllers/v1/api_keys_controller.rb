@@ -14,6 +14,6 @@ class V1::ApiKeysController < V1::BaseController
   private
 
   def restrict_access
-    redirect_with(status: 404) unless request.headers['Authorization'] == 'DBC-TOKEN test'
+    redirect_with(status: 404) unless request.headers['Authorization'] == ENV['DBC_TOKEN']
   end
 end
