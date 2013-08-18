@@ -4,13 +4,13 @@ class V1::UsersController < V1::BaseController
 
   def index
     @users = User.all
-    respond_with @users
+    render json: @users
   end
 
   def show
     @user = User.find_by_id(params[:id])
     if @user
-      respond_with @user
+      render json: @user
     else
       redirect_to(status: 404)
     end
@@ -30,5 +30,6 @@ class V1::UsersController < V1::BaseController
   def restrict_access
     authenticate_or_request_with_http_token do |token, options|
       ApiKey.exists?(key: token)
+    end
   end
 end
