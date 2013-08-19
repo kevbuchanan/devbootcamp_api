@@ -67,7 +67,7 @@ class Cohort < ActiveRecord::Base
   end
 
   def active_model_serializer
-    Api::V2::CohortSerializer
+    V1::CohortSerializer
   end
 
   protected

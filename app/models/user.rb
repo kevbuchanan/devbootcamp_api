@@ -231,10 +231,6 @@ class User < ActiveRecord::Base
     V1::UserSerializer
   end
 
-  def as_json(options={})
-    active_model_serializer.new(self).as_json(options)
-  end
-
   def generate_password_reset_token
     begin
       self.password_reset_token = SecureRandom.urlsafe_base64
