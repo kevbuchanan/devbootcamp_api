@@ -17,7 +17,7 @@ class V1::ChallengeAttemptsController < V1::BaseController
   def show
     user = User.find(params[:user_id])
     if user
-      @challenge_attempts = user.challenge_attempts.find_by_id(params[:id])
+      @challenge_attempts = user.challenge_attempts.find(params[:id])
       render json: @challenge_attempts
     else
       render nothing: true, status: 404
