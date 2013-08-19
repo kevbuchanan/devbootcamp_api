@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
   # only add new roles at the end of the array
   ROLES = %w( student editor admin ta)
 
+  def active_model_serializer
+    V1::UserSerializer
+  end
+
   def self.in_session
     User.joins(:cohort).where(:cohorts => {:in_session => true})
   end
@@ -224,10 +228,6 @@ class User < ActiveRecord::Base
     generate_password_reset_token #  required for welcome email
     save!
     UsersMailer.delay_for(5.seconds).welcome(self.id)
-  end
-
-  def active_model_serializer
-    V1::UserSerializer
   end
 
   def generate_password_reset_token

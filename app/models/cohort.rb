@@ -10,6 +10,10 @@ class Cohort < ActiveRecord::Base
   scope :prev, lambda { |c| where(["cohorts.id < ?", c.id]).order("id DESC") }
   scope :visible, where(:visible => true)
 
+  def active_model_serializer
+    V1::CohortSerializer
+  end
+
   def self.current_students
     User.joins(:cohort).where(:cohorts => {:in_session => true}).by_name
   end
@@ -64,10 +68,6 @@ class Cohort < ActiveRecord::Base
 
   def sf?
     location == "San Francisco"
-  end
-
-  def active_model_serializer
-    V1::CohortSerializer
   end
 
   protected

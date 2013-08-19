@@ -1,18 +1,18 @@
-class V1::CohortsController < V1::BaseController
+class V1::ExercisesController < V1::BaseController
   include AuthorizationHelper
 
   before_filter :restrict_access
   respond_to :json
 
   def index
-    @cohorts = Cohort.all
-    render json: @cohorts
+    @exercises = Exercise.published.all
+    render json: @exercises
   end
 
   def show
-    @cohort = Cohort.find(params[:id])
-    if @cohort
-      render json: @cohort
+    @exercise = Exercise.published.find(params[:id])
+    if @exercise
+      render json: @exercise
     else
       render nothing: true, status: 404
     end
