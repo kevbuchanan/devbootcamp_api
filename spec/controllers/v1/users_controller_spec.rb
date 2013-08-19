@@ -32,7 +32,7 @@ describe V1::UsersController, :helper_namespace => :api_v1 do
 
     it 'should return one user' do
       body = JSON.parse(response.body)
-      name = body['name']
+      name = body['user']['name']
       expect(name).to_not be_nil
     end
 
