@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   include User::Profile
   attr_accessible :name, :password, :password_confirmation
-  #has_gravatar
-  has_secure_password
 
   has_many :actor_users
   has_many :actors, through: :actor_users
@@ -12,7 +10,6 @@ class User < ActiveRecord::Base
   has_one  :api_key
   delegate :key, :to => :api_key
 
-  #acts_as_commentable
   has_many :comments, :as => :commentable
 
   has_many :exercise_attempts, :through => :actors

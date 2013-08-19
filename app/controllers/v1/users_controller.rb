@@ -12,7 +12,7 @@ class V1::UsersController < V1::BaseController
     if @user
       render json: @user
     else
-      redirect_to(status: 404)
+      render nothing: true, status: 404
     end
   end
 
