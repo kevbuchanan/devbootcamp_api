@@ -28,8 +28,6 @@ class V1::UsersController < V1::BaseController
   private
 
   def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      ApiKey.exists?(key: token)
-    end
+    render(:nothing => true, :status => 404) unless valid_api_key?
   end
 end

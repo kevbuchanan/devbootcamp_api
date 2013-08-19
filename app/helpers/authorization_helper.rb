@@ -1,10 +1,6 @@
 module AuthorizationHelper
   def valid_api_key?
-    if auth_header && auth_header_format_valid? && api_key_exists?
-      true
-    else
-      false
-    end
+    auth_header && auth_header_format_valid? && api_key_exists?
   end
 
   private
