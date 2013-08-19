@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, :aliases => [:giver, :receiver, :claimer] do
+  factory :user do
     name  { Faker::Name.name }
     email { Faker::Internet.free_email }
     password 'pizza'
@@ -7,6 +7,7 @@ FactoryGirl.define do
     github_token { Faker::Lorem.characters(15) }
 
     association :cohort, :strategy => :build
+    association :api_key, :strategy => :create
 
     factory(:admin_user)   { roles ['admin'] }
     factory(:student_user) { roles ['student'] }
