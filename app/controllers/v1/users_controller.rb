@@ -1,4 +1,6 @@
 class V1::UsersController < V1::BaseController
+  include AuthorizationHelper
+
   before_filter :restrict_access
   respond_to :json
 
@@ -14,15 +16,6 @@ class V1::UsersController < V1::BaseController
     else
       render nothing: true, status: 404
     end
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  def create
   end
 
   private
