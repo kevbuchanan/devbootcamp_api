@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :actor_users
   has_many :actors, through: :actor_users
+  has_many :challenge_attempts, :through => :actors, :uniq => true
   has_many :feedback_given, :class_name => 'Feedback', :foreign_key => 'giver_id'
   has_many :feedback_receivable, :class_name => 'Feedback', :foreign_key => 'receiver_id'
   has_many :feedback_ratings
@@ -25,8 +26,6 @@ class User < ActiveRecord::Base
     has_many :"#{state}_challenges",         :through => :actors, :uniq    => true
     has_many :"#{state}_challenge_attempts", :through => :actors, :uniq    => true
   end
-
-  has_many :challenge_attempts, :through => :actors, :uniq => true
 
   # FIXME It's not great to hard code this at the model level -jfarmer
   has_many :exercises, :through => :actors
