@@ -8,6 +8,10 @@ class ApiKey < ActiveRecord::Base
   validates_uniqueness_of :key
   validates_presence_of   :key, :user_id
 
+  def active_model_serializer
+    V1::ApiKeySerializer
+  end
+
   private
 
   def generate_access_token

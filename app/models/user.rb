@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include User::Profile
-
+  attr_accessible :name, :password, :password_confirmation
   #has_gravatar
   has_secure_password
 

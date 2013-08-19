@@ -3,17 +3,18 @@ class V1::ApiKeysController < V1::BaseController
   respond_to :json
 
   def show
-    @key = ApiKey.find_by_user_id(params[:id])
-    if @key
-      respond_with @key
+    api_key = ApiKey.find_by_user_id(params[:id])
+
+    if api_key
+      render json: api_key
     else
-      redirect_with(status: 404)
+      render nothing: true, status: 404
     end
   end
 
   private
 
   def restrict_access
-    redirect_with(status: 404) unless request.headers['Authorization'] == ENV['DBC_TOKEN']
+    render(:nothing => true, :status => 404) unless request.headers['Authorization'] == ENV['DBC_TOKEN']
   end
 end
