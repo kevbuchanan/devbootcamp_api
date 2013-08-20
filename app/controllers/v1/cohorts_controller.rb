@@ -5,7 +5,7 @@ class V1::CohortsController < V1::BaseController
   respond_to :json
 
   def index
-    @cohorts = Cohort.all
+    @cohorts = Cohort.page({page: params[:page], per_page: params[:per_page]})
     render json: @cohorts
   end
 

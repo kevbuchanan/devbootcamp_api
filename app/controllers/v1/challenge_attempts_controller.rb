@@ -5,9 +5,9 @@ class V1::ChallengeAttemptsController < V1::BaseController
   respond_to :json
 
   def index
-    user = User.find(params[:user_id])
+    user = User.find_by_id(params[:user_id])
     if user
-      @challenge_attempts = user.challenge_attempts.all
+      @challenge_attempts = user.challenge_attempts.page({page: params[:page], per_page: params[:per_page]})
       render json: @challenge_attempts
     else
       render nothing: true, status: 404

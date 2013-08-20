@@ -5,7 +5,7 @@ class V1::ChallengesController < V1::BaseController
   respond_to :json
 
   def index
-    @challenges = Challenge.published.all
+    @challenges = Challenge.published.page({page: params[:page], per_page: params[:per_page]})
     render json: @challenges
   end
 

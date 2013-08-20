@@ -7,7 +7,7 @@ class V1::ExerciseAttemptsController < V1::BaseController
   def index
     user = User.find(params[:user_id])
     if user
-      @exercise_attempts = user.exercise_attempts.correct.all
+      @exercise_attempts = user.exercise_attempts.correct.page({page: params[:page], per_page: params[:per_page]})
       render json: @exercise_attempts
     else
       render nothing: true, status: 404
