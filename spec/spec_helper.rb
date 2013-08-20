@@ -36,4 +36,5 @@ end
 
 def skip_http_authentication
   V1::UsersController.any_instance.stub(:valid_api_key?).and_return(true)
+  V1::CohortsController.any_instance.stub(:valid_api_key?).and_return(true)
 end

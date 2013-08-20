@@ -3,8 +3,6 @@ require 'spec_helper'
 describe V1::UsersController, :helper_namespace => :api_v1 do
 
   before(:each) do
-    #request.env['HTTP_AUTHORIZATION'] = 'Token token="foo"'
-    #ApiKey.stub(:exists?).and_return(true)
     skip_http_authentication
     create :user
     get :index
@@ -12,7 +10,6 @@ describe V1::UsersController, :helper_namespace => :api_v1 do
 
   describe '#index' do
     it_should_behave_like('an endpoint')
-
 
     it 'should return a list of users' do
       body = JSON.parse(response.body)
