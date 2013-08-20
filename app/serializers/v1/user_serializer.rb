@@ -1,5 +1,5 @@
 class V1::UserSerializer < V1::BaseSerializer
-  attributes :name, :email, :bio, :cohort_id, :profile
+  attributes :id, :name, :email, :bio, :cohort_id, :profile
 
   def profile
     profile_attributes = {}
