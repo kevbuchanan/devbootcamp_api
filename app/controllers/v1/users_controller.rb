@@ -5,7 +5,7 @@ class V1::UsersController < V1::BaseController
   respond_to :json
 
   def index
-    @users = User.all
+    @users = User.page({page: params[:page], per_page: params[:per_page]})
     render json: @users
   end
 

@@ -7,7 +7,7 @@ describe V1::ChallengeAttemptsController, :helper_namespace => :api_v1 do
     user = create :user
     challenge_attempt = create :challenge_attempt
     User.any_instance.stub(:challenge_attempts).and_return(challenge_attempt)
-    ChallengeAttempt.any_instance.stub(:all).and_return([challenge_attempt])
+    ChallengeAttempt.any_instance.stub(:page).and_return([challenge_attempt])
     get :index, :user_id => user.id
   end
 

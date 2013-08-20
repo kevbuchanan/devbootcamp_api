@@ -5,7 +5,7 @@ class V1::ExercisesController < V1::BaseController
   respond_to :json
 
   def index
-    @exercises = Exercise.published.all
+    @exercises = Exercise.published.page({page: params[:page], per_page: params[:per_page]})
     render json: @exercises
   end
 
