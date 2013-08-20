@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   include User::Profile
   attr_accessible :name, :password, :password_confirmation
 
+  has_secure_password
+
   has_many :actor_users
   has_many :actors, through: :actor_users
   has_many :challenge_attempts, :through => :actors, :uniq => true

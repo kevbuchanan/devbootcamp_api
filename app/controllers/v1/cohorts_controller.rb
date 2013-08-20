@@ -10,7 +10,7 @@ class V1::CohortsController < V1::BaseController
   end
 
   def show
-    @cohort = Cohort.find(params[:id])
+    @cohort = Cohort.find_by_id(params[:id])
     if @cohort
       render json: @cohort
     else

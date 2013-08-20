@@ -1,44 +1,44 @@
 require 'spec_helper'
 
-describe V1::UsersController, :helper_namespace => :api_v1 do
+describe V1::CohortsController, :helper_namespace => :api_v1 do
 
   before(:each) do
     skip_http_authentication
-    create :user
+    create :cohort
     get :index
   end
 
   describe '#index' do
     it_should_behave_like('an endpoint')
 
-    it 'should return a list of users' do
+    it 'should return a list of cohorts' do
       body = JSON.parse(response.body)
-      name = body['users'][0]['name']
-      expect(body['users']).to be_a(Array)
+      name = body['cohorts'][0]['name']
+      expect(body['cohorts']).to be_a(Array)
       expect(name).to_not be_nil
     end
   end
 
   describe '#show' do
     before do
-      user = create :user
-      get :show, :format => :json, :id => user.id
+      cohort = create :cohort
+      get :show, :format => :json, :id => cohort.id
     end
 
     it_should_behave_like('an endpoint')
 
-    it 'should return one user' do
+    it 'should return one cohort' do
       body = JSON.parse(response.body)
-      name = body['user']['name']
+      name = body['cohort']['name']
       expect(name).to_not be_nil
     end
 
-    it 'should return a users profile' do
+    it 'should include a list of students' do
       body = JSON.parse(response.body)
-      expect(body['user']).to have_key('profile')
+      expect(body['cohort']).to have_key('students')
     end
 
-    it 'should return a 404 status if the user is not found' do
+    it 'should return a 404 status if the cohort is not found' do
       get :show, :id => 0, :format => :json
       expect(response.status).to eql(404)
     end

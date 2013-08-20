@@ -23,4 +23,30 @@ FactoryGirl.define do
     user_id 5
     key { SecureRandom.hex}
   end
+
+  factory :challenge do
+    actor_id 1
+    challenge_unit_id 1
+    level '1'
+    sequence(:name) { |n| "Ruby Challenge #{n}" }
+    description 'prime factors'
+    source_repo 'http://github.com/example'
+  end
+
+  factory :unpublished_challenge, class: Challenge do
+    actor_id 1
+    challenge_unit_id 1
+    level '1'
+    sequence(:name) { |n| "Unpublished Ruby Challenge #{n}" }
+    description 'prime factors'
+    source_repo 'http://github.com/example'
+    draft true
+  end
+
+  factory :challenge_attempt do
+    state 'finished'
+    challenge_id 1
+    actor_id 1
+    repo 'http://github.com/example'
+  end
 end

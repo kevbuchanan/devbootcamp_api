@@ -10,7 +10,7 @@ class V1::ChallengesController < V1::BaseController
   end
 
   def show
-    @challenge = Challenge.published.find(params[:id])
+    @challenge = Challenge.published.find_by_id(params[:id])
     if @challenge
       render json: @challenge
     else
