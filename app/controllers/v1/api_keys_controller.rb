@@ -15,6 +15,6 @@ class V1::ApiKeysController < V1::BaseController
   private
 
   def restrict_access
-    render(:nothing => true, :status => 404) unless request.headers['Authorization'] == ENV['DBC_TOKEN']
+    render(:nothing => true, :status => 404) unless request.headers['Authorization'] == ENV['DBC_SHARED']
   end
 end
