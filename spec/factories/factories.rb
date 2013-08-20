@@ -42,4 +42,11 @@ FactoryGirl.define do
     source_repo 'http://github.com/example'
     draft true
   end
+
+  factory :challenge_attempt do
+    state 'finished'
+    challenge_id 1
+    actor_id 1
+    repo 'http://github.com/example'
+  end
 end
