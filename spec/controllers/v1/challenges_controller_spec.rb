@@ -5,7 +5,7 @@ describe V1::ChallengesController, :helper_namespace => :api_v1 do
   before(:each) do
     skip_http_authentication
     create :challenge
-    get :index
+    get :index, :format => :json
   end
 
   describe '#index' do
@@ -46,7 +46,7 @@ describe V1::ChallengesController, :helper_namespace => :api_v1 do
       it 'should not return an unpublished challenge' do
         challenge = create :unpublished_challenge
         get :show, :format => :json, :id => challenge.id
-        expect(response.body).to eq (' ')
+        expect(response.body).to eq ('{"message":"Record not found","more_info":"https://dev.devbootcamp.com/documentation#errors"}')
       end
     end
   end
