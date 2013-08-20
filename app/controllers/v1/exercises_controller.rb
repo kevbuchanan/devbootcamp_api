@@ -14,13 +14,23 @@ class V1::ExercisesController < V1::BaseController
     if @exercise
       render json: @exercise
     else
-      render nothing: true, status: 404
+      render(
+        :status => 404,
+        json:{
+          :message => "Exercise not found",
+          :more_info => "http://errorpage.com"})
     end
   end
 
   private
 
   def restrict_access
-    render(:nothing => true, :status => 404) unless valid_api_key?
+    render(
+      :status => 401,
+      json:{
+        :status => 401,
+        :message => "Need valid API key",
+        :more_info => "http://www.errorpage.com"
+      }) unless valid_api_key?
   end
 end

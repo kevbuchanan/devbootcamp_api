@@ -15,6 +15,12 @@ class V1::ApiKeysController < V1::BaseController
   private
 
   def restrict_access
-    render(:nothing => true, :status => 404) unless request.headers['Authorization'] == ENV['DBC_SHARED']
+    render(
+      :status => 401,
+      json:{
+        :status => 401,
+        :message => "Need valid API key",
+        :more_info => "http://www.errorpage.com"
+      }) unless request.headers['Authorization'] == ENV['DBC_SHARED']
   end
 end

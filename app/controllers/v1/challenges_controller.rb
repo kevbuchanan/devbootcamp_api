@@ -14,13 +14,23 @@ class V1::ChallengesController < V1::BaseController
     if @challenge
       render json: @challenge
     else
-      render nothing: true, status: 404
+      render(
+        :status => 404,
+        json:{
+          :message => "Challenge not found",
+          :more_info => "http://errorpage.com"})
     end
   end
 
   private
 
   def restrict_access
-    render(:nothing => true, :status => 404) unless valid_api_key?
+    render(
+      :status => 401,
+      json:{
+        :status => 401,
+        :message => "Need valid API key",
+        :more_info => "http://www.errorpage.com"
+      }) unless valid_api_key?
   end
 end

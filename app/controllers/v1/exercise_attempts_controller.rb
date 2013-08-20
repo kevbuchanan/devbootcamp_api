@@ -10,7 +10,11 @@ class V1::ExerciseAttemptsController < V1::BaseController
       @exercise_attempts = user.exercise_attempts.correct.page({page: params[:page], per_page: params[:per_page]})
       render json: @exercise_attempts
     else
-      render nothing: true, status: 404
+      render(
+        :status => 404,
+        json:{
+          :message => "User not found",
+          :more_info => "http://errorpage.com"})
     end
   end
 
@@ -20,13 +24,23 @@ class V1::ExerciseAttemptsController < V1::BaseController
       @exercise_attempts = user.exercise_attempts.correct.find(params[:id])
       render json: @exercise_attempts
     else
-      render nothing: true, status: 404
+      render(
+        :status => 404,
+        json:{
+          :message => "User not found",
+          :more_info => "http://errorpage.com"})
     end
   end
 
   private
 
   def restrict_access
-    render(:nothing => true, :status => 404) unless valid_api_key?
+    render(
+      :status => 401,
+      json:{
+        :status => 401,
+        :message => "Need valid API key",
+        :more_info => "http://www.errorpage.com"
+    }) unless valid_api_key?
   end
 end
