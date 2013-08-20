@@ -5,7 +5,7 @@ describe V1::CohortsController, :helper_namespace => :api_v1 do
   before(:each) do
     skip_http_authentication
     create :cohort
-    get :index
+    get :index, :format => :json
   end
 
   describe '#index' do

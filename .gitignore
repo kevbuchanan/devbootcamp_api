@@ -27,4 +27,5 @@ bin/
 *.swp
 .ruby-gemset
 .rspec
-.rvmrc
+.
+node_modules/

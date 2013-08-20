@@ -5,7 +5,7 @@ describe V1::UsersController, :helper_namespace => :api_v1 do
   before(:each) do
     skip_http_authentication
     create :user
-    get :index
+    get :index, :format => :json
   end
 
   describe '#index' do
