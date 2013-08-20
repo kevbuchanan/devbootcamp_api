@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   include User::Profile
-  attr_accessible :name, :password, :password_confirmation
-
+  
+  attr_accessible :name, :password, :password_confirmation, :cohort, :roles, :email
+  attr_accessible :github, :quora, :twitter, :facebook, :linked_in, :blog, :hacker_news
+  
   has_secure_password
 
   has_many :actor_users

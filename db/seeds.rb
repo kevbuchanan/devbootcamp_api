@@ -46,25 +46,25 @@ User.create! params.merge(:name => 'Jared Grippe',    :email => "jared@devbootca
 User.create! params.merge(:name => 'Zee Spencer',     :email => "zee@devbootcamp.com")
 
 # Create some stock poll questions
-questions = ['I was awesome',
-             'I have good personal hygiene',
-             "I'm receptive to my pair's ideas",
-             "I was attentive",
-             "I said or did something offensive"]
+# questions = ['I was awesome',
+#              'I have good personal hygiene',
+#              "I'm receptive to my pair's ideas",
+#              "I was attentive",
+#              "I said or did something offensive"]
 
-questions.each { |q| Question.create(:body => q) }
+# questions.each { |q| Question.create(:body => q) }
 
-questions = Question.all
+# questions = Question.all
 users     = User.all
 
 # Have every user give feedback to every other user
-users.permutation(2).each do |giver, receiver|
-  Feedback.create do |f|
-    f.giver    = giver
-    f.receiver = receiver
-    f.body     = Faker::Lorem.paragraphs(2).join("\n\n")
-  end
-end
+# users.permutation(2).each do |giver, receiver|
+#   Feedback.create do |f|
+#     f.giver    = giver
+#     f.receiver = receiver
+#     f.body     = Faker::Lorem.paragraphs(2).join("\n\n")
+#   end
+# end
 
 User.create! params.merge(:name => 'Stud Ent',        :email => 'student@devbootcamp.com')
 
