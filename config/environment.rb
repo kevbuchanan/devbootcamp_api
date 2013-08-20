@@ -3,5 +3,3 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 SocratesApi::Application.initialize!
-
-ENV['DBC-TOKEN'] = 'DBC-TOKEN test'

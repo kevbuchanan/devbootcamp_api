@@ -1,18 +1,18 @@
-class V1::UsersController < V1::BaseController
+class V1::CohortsController < V1::BaseController
   include AuthorizationHelper
 
   before_filter :restrict_access
   respond_to :json
 
   def index
-    @users = User.all
-    render json: @users
+    @cohorts = Cohort.all
+    render json: @cohorts
   end
 
   def show
-    @user = User.find(params[:id])
-    if @user
-      render json: @user
+    @cohort = Cohort.find(params[:id])
+    if @cohort
+      render json: @cohort
     else
       render nothing: true, status: 404
     end

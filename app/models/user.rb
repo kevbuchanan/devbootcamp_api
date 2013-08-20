@@ -1,18 +1,16 @@
 class User < ActiveRecord::Base
   include User::Profile
   attr_accessible :name, :password, :password_confirmation
-  #has_gravatar
-  has_secure_password
 
   has_many :actor_users
   has_many :actors, through: :actor_users
+  has_many :challenge_attempts, :through => :actors, :uniq => true
   has_many :feedback_given, :class_name => 'Feedback', :foreign_key => 'giver_id'
   has_many :feedback_receivable, :class_name => 'Feedback', :foreign_key => 'receiver_id'
   has_many :feedback_ratings
   has_one  :api_key
   delegate :key, :to => :api_key
 
-  #acts_as_commentable
   has_many :comments, :as => :commentable
 
   has_many :exercise_attempts, :through => :actors
@@ -28,8 +26,6 @@ class User < ActiveRecord::Base
     has_many :"#{state}_challenges",         :through => :actors, :uniq    => true
     has_many :"#{state}_challenge_attempts", :through => :actors, :uniq    => true
   end
-
-  has_many :challenge_attempts, :through => :actors, :uniq => true
 
   # FIXME It's not great to hard code this at the model level -jfarmer
   has_many :exercises, :through => :actors
@@ -47,6 +43,10 @@ class User < ActiveRecord::Base
 
   # only add new roles at the end of the array
   ROLES = %w( student editor admin ta)
+
+  def active_model_serializer
+    V1::UserSerializer
+  end
 
   def self.in_session
     User.joins(:cohort).where(:cohorts => {:in_session => true})
@@ -228,14 +228,6 @@ class User < ActiveRecord::Base
     generate_password_reset_token #  required for welcome email
     save!
     UsersMailer.delay_for(5.seconds).welcome(self.id)
-  end
-
-  def active_model_serializer
-    V1::UserSerializer
-  end
-
-  def as_json(options={})
-    active_model_serializer.new(self).as_json(options)
   end
 
   def generate_password_reset_token

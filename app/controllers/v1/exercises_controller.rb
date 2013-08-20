@@ -1,18 +1,18 @@
-class V1::UsersController < V1::BaseController
+class V1::ExercisesController < V1::BaseController
   include AuthorizationHelper
 
   before_filter :restrict_access
   respond_to :json
 
   def index
-    @users = User.all
-    render json: @users
+    @exercises = Exercise.published.all
+    render json: @exercises
   end
 
   def show
-    @user = User.find(params[:id])
-    if @user
-      render json: @user
+    @exercise = Exercise.published.find(params[:id])
+    if @exercise
+      render json: @exercise
     else
       render nothing: true, status: 404
     end
