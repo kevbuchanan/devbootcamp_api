@@ -4,7 +4,7 @@ module AuthorizationHelper
   end
 
   def valid_shared_key?
-    auth_header == "DBC-SHARED" + " " + ENV["DBC-SHARED"]
+    auth_header == "DBC-SHARED" + " " + shared_key
   end
 
   private
@@ -27,5 +27,9 @@ module AuthorizationHelper
 
   def api_key_exists?
     ApiKey.find_by_key(auth_header_key) != nil
+  end
+
+  def shared_key
+    ENV["DBC-SHARED"]
   end
 end

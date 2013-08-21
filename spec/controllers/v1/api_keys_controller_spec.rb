@@ -3,6 +3,7 @@ require 'spec_helper'
 describe V1::ApiKeysController, :helper_namespace => :api_v1 do
   describe '#show' do
     before do
+      skip_http_authentication
       user = create :user
       get :show, :format => :json, :id => user.id
     end
