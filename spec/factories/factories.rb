@@ -63,4 +63,11 @@ FactoryGirl.define do
     sequence(:slug) { |n| "slug#{n}" }
     state  'unpublished'
   end
+
+  factory :exercise_attempt do
+    exercise_id 1
+    code 'test code'
+    results 'test results'
+    actor_id 1
+  end
 end
