@@ -3,6 +3,10 @@ module AuthorizationHelper
     auth_header && auth_header_format_valid? && api_key_exists?
   end
 
+  def valid_shared_key?
+    auth_header == "DBC-SHARED" + " " + ENV["DBC-SHARED"]
+  end
+
   private
 
   def auth_header
@@ -18,8 +22,7 @@ module AuthorizationHelper
   end
 
   def auth_header_format_valid?
-    return false if auth_header_parts.count != 2 or auth_header_parts.first != "DBC-API"
-    true
+    auth_header_parts.count == 2 && auth_header_parts.first == "DBC-API"
   end
 
   def api_key_exists?
