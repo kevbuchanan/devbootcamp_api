@@ -4,7 +4,7 @@ module AuthorizationHelper
   end
 
   def valid_shared_key?
-    auth_header == "DBC-SHARED" + " " + shared_key
+    auth_header == DBC_SHARED_HEADER_LABEL + " " + shared_key
   end
 
   private
