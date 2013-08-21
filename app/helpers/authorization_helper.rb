@@ -22,7 +22,7 @@ module AuthorizationHelper
   end
 
   def auth_header_format_valid?
-    auth_header_parts.count == 2 && auth_header_parts.first == "DBC-API"
+    auth_header_parts.count == 2 && auth_header_parts.first == DBC_API_HEADER_LABEL
   end
 
   def api_key_exists?

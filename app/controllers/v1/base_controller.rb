@@ -12,7 +12,7 @@ class V1::BaseController < ApplicationController
       		 json: {
         	   status: 401,
              message: "Invalid API key",
-        		 more_info: "https://dev.devbootcamp.com/documentation#errors"
+        		 more_info: DEV_SITE_HOST
       		 } unless valid_api_key?
   end
 
@@ -21,7 +21,7 @@ class V1::BaseController < ApplicationController
        json: {
          status: 401,
          message: "Invalid Shared key",
-         more_info: "https://dev.devbootcamp.com/documentation#errors"
+         more_info: DEV_SITE_HOST
        } unless valid_shared_key?
   end
 
@@ -29,6 +29,6 @@ class V1::BaseController < ApplicationController
 	  render status: 404,
 	     		 json: {
 	           message: "Record not found",
-	           more_info: "https://dev.devbootcamp.com/documentation#errors"}
+	           more_info: DEV_SITE_HOST}
 	end
 end

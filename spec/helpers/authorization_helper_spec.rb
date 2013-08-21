@@ -4,8 +4,6 @@ describe AuthorizationHelper do
   let(:user)    { User.create(name: "abi", password: 'pizza', password_confirmation: 'pizza') }
   let!(:api_key) { ApiKey.create(key: SecureRandom.hex, user: user) }
   let(:shared_key) { 'test123' }
-  # stub_const("SHARED_KEY", fake_foo)
-
 
   describe "#valid_api_key?" do
     it "returns true when request authorization header contains valid api key" do
@@ -30,11 +28,8 @@ describe AuthorizationHelper do
   end
 
   describe "#valid_shared_key?" do
-    before do
-      ENV.stub(:[]).with("DBC_SHARED").and_return("test123")
-    end
-
     it "returns true when request authorization header contains valid shared key" do
+      ENV.stub(:[]).with("DBC_SHARED").and_return("test123")
       controller.request.stub(:headers).and_return({"Authorization" => "DBC-SHARED #{shared_key}"})
       expect(helper.valid_shared_key?).to be_true
     end#
@@ -55,4 +50,3 @@ describe AuthorizationHelper do
     end
   end
 end
-x
