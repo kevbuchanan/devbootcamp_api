@@ -1,0 +1,2 @@
+class RubyExercise < Exercise
+end

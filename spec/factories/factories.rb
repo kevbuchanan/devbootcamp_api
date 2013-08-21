@@ -49,4 +49,25 @@ FactoryGirl.define do
     actor_id 1
     repo 'http://github.com/example'
   end
+
+  factory :exercise do
+    intro 'test intro'
+    title 'test title'
+    sequence(:slug) { |n| "slug#{n}" }
+    state  'published'
+  end
+
+  factory :unpublished_exercise, class: Exercise do
+    intro 'test intro'
+    title 'test title'
+    sequence(:slug) { |n| "slug#{n}" }
+    state  'unpublished'
+  end
+
+  factory :exercise_attempt do
+    exercise_id 1
+    code 'test code'
+    results 'test results'
+    actor_id 1
+  end
 end
