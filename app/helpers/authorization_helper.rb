@@ -30,6 +30,6 @@ module AuthorizationHelper
   end
 
   def shared_key
-    ENV["DBC-SHARED"]
+    ENV["DBC_SHARED"]
   end
 end

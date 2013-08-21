@@ -29,7 +29,7 @@ describe AuthorizationHelper do
 
   describe "#valid_shared_key?" do
     before do
-      ENV.stub(:[]).with("DBC-SHARED").and_return("test123")
+      ENV.stub(:[]).with("DBC_SHARED").and_return("test123")
     end
 
     it "returns true when request authorization header contains valid shared key" do
