@@ -1,9 +1,9 @@
 class ActiveRecord::Base
-  def self.page(options)
+  def self.page(options = {})
     if options[:per_page]
       limit = options[:per_page].to_i
     else
-      limit = 20
+      return self.all
     end
     if options[:page]
       offset = (options[:page].to_i - 1) * limit
