@@ -1,4 +1,6 @@
 class Exercise < ActiveRecord::Base
+  belongs_to :actor
+  has_many :attempts, :class_name => 'ExerciseAttempt', :dependent => :destroy
 
   scope :published, where(:state => :published)
 
