@@ -1,5 +1,6 @@
 class V1::ChallengeAttemptsController < V1::BaseController
   before_filter :require_api_key
+
   def index
     user = User.find(params[:user_id])
     respond_with user.challenge_attempts.page({page: params[:page], per_page: params[:per_page]})
