@@ -1,5 +1,5 @@
 class ApiKey < ActiveRecord::Base
-  before_create :generate_access_token
+  before_validation :generate_access_token, on: :create
 
   attr_accessible :key, :user_id, :user
 
