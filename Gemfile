@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'active_model_serializers'
 gem 'bcrypt-ruby', '=3.0.0'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails'
